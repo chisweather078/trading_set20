@@ -33,8 +33,8 @@ class Counter(db.Model):
 
 db.create_all()
 
-# db.session.add(Counter(current_set=1))
-# db.session.commit()
+db.session.add(Counter(current_set=1))
+db.session.commit()
 
 
 @app.route("/")
