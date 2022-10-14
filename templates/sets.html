@@ -1,0 +1,16 @@
+{% include "header.html" %}
+
+<div class="container pb-5">
+    {% for group in trades_group.keys() %}
+        <div class="card mt-4 col-sm-12 col-md-8 mx-auto bg-dark text-white border-white">
+            <div class="card-header" style="background-color:#222831;"></div>
+            <div class="card-body">
+                <h5 class="card-title">{{ group }}</h5>
+                <p class="card-text">Trade PnL: ${{ trades_group[group]['pnl'] }}--Total number of trades: {{ trades_group[group]['count'] }}--Winning trades: {{ trades_group[group]['winners'] }}--Losing trades: {{ trades_group[group]['losers'] }}</p>
+                <a href="{{ url_for('my_trades', set_num=group) }}" class="btn btn-outline-light">View Trades</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% include "footer.html" %}

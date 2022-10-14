@@ -1,0 +1,55 @@
+{% include 'header.html' %}
+<div class="container mt-3 text-white pb-5 mb-5">
+    <h2>{{ trade_to_view.date.strftime("%d %B, %Y") }}&nbsp-&nbsp{{ trade_to_view.symbol }}&nbsp&nbsp&nbsp<a class="text-decoration-none ms-4 text-muted" href="{{ url_for('update', trade_id=trade_to_view.id) }}"><i class="fa-solid fa-pen fa-sm"></i></a></h2>
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h3>Before Trade</h3>
+            <hr class="dropdown-divider">
+            <h5 class="mt-2">Trend</h5>
+            <p>{{ trade_to_view.trend }}</p>
+            <h5 class="mt-2">Divergence</h5>
+            <p>{{ trade_to_view.divergence }}</p>
+            <h5 class="mt-2">Entry Strategy</h5>
+            {% for line in trade_to_view.confirmation.split('\n') %}
+                <p>{{ line }}</p>
+            {% endfor %}
+
+
+        </div>
+        {% if trade_to_view.outcome %}
+            <div class="col-sm-12 col-md-6">
+                <h3>After Trade</h3>
+                <hr class="dropdown-divider">
+                <h5 class="mt-2">Trade Outcome</h5>
+                <p>${{ trade_to_view.outcome }}</p>
+                <h5 class="mt-2">Exit Strategy</h5>
+                {% for line in trade_to_view.close.split('\n') %}
+                <p>{{ line }}</p>
+                {% endfor %}
+                <hr class="dropdown-divider">
+                <h5>Comments</h5>
+                {% for line in trade_to_view.deduction.split('\n') %}
+                <p>{{ line }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="col-12">
+            <h3>Open Trade</h3>
+            {% for link in trade_to_view.open_image.split('\n') %}
+                <div class="col-12 mb-3">
+                    <img class="img-fluid" src="{{ link }}">
+                </div>
+            {% endfor %}
+            <h3>Close Image</h3>
+            {% for link in trade_to_view.close_image.split('\n') %}
+                <div class="col-12 mb-3">
+                    <img class="img-fluid" src="{{ link }}">
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% include 'footer.html' %}

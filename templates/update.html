@@ -1,0 +1,153 @@
+{% include 'header.html' %}
+<div class="container pb-5 text-white mb-5">
+    <form action="{{ url_for('update', trade_id=trade_to_update.id) }}" method="post">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 pt-3">
+                <div class="col-sm-6 col-md-5 mb-3 mt-3">
+                    <label for="symbol" class="form-label">Symbol</label>
+                    <select class="form-select bg-dark text-white" id="symbol" name="symbol" required>
+                        {% if trade_to_update.symbol == 'Boom 500' %}
+                        <option value="Crash 1000">Crash 1000</option>
+                        <option value="Crash 500">Crash 500</option>
+                        <option value="Crash 300">Crash 300</option>
+                        <option value="Boom 1000">Boom 1000</option>
+                        <option value="Boom 500" selected>Boom 500</option>
+                        <option value="Boom 300">Boom 300</option>
+                        {% elif trade_to_update.symbol ==  'Crash 1000' %}
+                        <option value="Crash 1000" selected>Crash 1000</option>
+                        <option value="Crash 500">Crash 500</option>
+                        <option value="Crash 300">Crash 300</option>
+                        <option value="Boom 1000">Boom 1000</option>
+                        <option value="Boom 500">Boom 500</option>
+                        <option value="Boom 300">Boom 300</option>
+                        {% elif trade_to_update.symbol == 'Crash 500' %}
+                        <option value="Crash 1000">Crash 1000</option>
+                        <option value="Crash 500" selected>Crash 500</option>
+                        <option value="Crash 300">Crash 300</option>
+                        <option value="Boom 1000">Boom 1000</option>
+                        <option value="Boom 500">Boom 500</option>
+                        <option value="Boom 300">Boom 300</option>
+                        {% elif trade_to_update.symbol == 'Boom 1000' %}
+                        <option value="Crash 1000">Crash 1000</option>
+                        <option value="Crash 500">Crash 500</option>
+                        <option value="Crash 300">Crash 300</option>
+                        <option value="Boom 1000" selected>Boom 1000</option>
+                        <option value="Boom 500">Boom 500</option>
+                        <option value="Boom 300">Boom 300</option>
+                        {% elif trade_to_update.symbol == 'Crash 300' %}
+                        <option value="Crash 1000">Crash 1000</option>
+                        <option value="Crash 500">Crash 500</option>
+                        <option value="Crash 300" selected>Crash 300</option>
+                        <option value="Boom 1000">Boom 1000</option>
+                        <option value="Boom 500">Boom 500</option>
+                        <option value="Boom 300">Boom 300</option>
+                        {% elif trade_to_update.symbol == 'Boom 300' %}
+                        <option value="Crash 1000">Crash 1000</option>
+                        <option value="Crash 500">Crash 500</option>
+                        <option value="Crash 300">Crash 300</option>
+                        <option value="Boom 1000">Boom 1000</option>
+                        <option value="Boom 500">Boom 500</option>
+                        <option value="Boom 300" selected>Boom 300</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="col-sm-6 col-md-5 mb-3 mt-3">
+                    <label for="buy_sell" class="form-label">Buy/Sell</label>
+                    <select class="form-select bg-dark text-white" id="buy_sell" name="buy_sell" required>
+                        {% if trade_to_update.buy_sell == 'Buy' %}
+                        <option value="Buy" selected>Buy</option>
+                        <option value="Sell">Sell</option>
+                        {% else %}
+                        <option value="Buy">Buy</option>
+                        <option value="Sell" selected>Sell</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="col-sm-6 col-md-5 mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control bg-dark text-white" id="date"
+                           value="{{ trade_to_update.date.strftime('%Y-%m-%d') }}" name="date" required>
+                </div>
+                <div class="col-sm-6 col-md-5 mb-3">
+                    <label for="trend" class="form-label">Trend</label>
+                    <select class="form-select bg-dark text-white" id="trend" name="trend" required>
+                        {% if trade_to_update.trend == 'Uptrend' %}
+                        <option value="Uptrend" selected>Uptrend</option>
+                        <option value="Downtrend">Downtrend</option>
+                        <option value="Ranging">Ranging</option>
+                        {% elif trade_to_update.trend == 'Downtrend' %}
+                        <option value="Uptrend">Uptrend</option>
+                        <option value="Downtrend" selected>Downtrend</option>
+                        <option value="Ranging">Ranging</option>
+                        {% elif trade_to_update.trend == 'Ranging' %}
+                        <option value="Uptrend">Uptrend</option>
+                        <option value="Downtrend">Downtrend</option>
+                        <option value="Ranging" selected>Ranging</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-5 mb-3">
+                    <label for="divergence" class="form-label">Divergence</label>
+                    <select class="form-select bg-dark text-white" id="divergence" name="divergence" required>
+                        {% if trade_to_update.divergence == 'Hidden Divergence' %}
+                        <option value="Hidden Divergence" selected>Hidden Divergence</option>
+                        <option value="Regular Divergence">Regular Divergence</option>
+                        <option value="No Divergence">No Divergence</option>
+                        {% elif trade_to_update.divergence == 'Regular Divergence' %}
+                        <option value="Hidden Divergence">Hidden Divergence</option>
+                        <option value="Regular Divergence" selected>Regular Divergence</option>
+                        <option value="No Divergence">No Divergence</option>
+                        {% else %}
+                        <option value="Hidden Divergence">Hidden Divergence</option>
+                        <option value="Regular Divergence">Regular Divergence</option>
+                        <option value="No Divergence" selected>No Divergence</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-8 mb-3">
+                    <label for="confirmation">Entry Strategy</label>
+                    <textarea class="form-control bg-dark text-white" id="confirmation"
+                           name="confirmation" rows="2" required>{{ trade_to_update.confirmation }}</textarea>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 pt-3">
+                <h3>After Trade</h3>
+                <div class="col-sm-12 col-md-8 mb-3">
+                    <label for="outcome">Trade Outcome</label>
+                    <p class="text-muted">PnL eg. -30 or 45</p>
+                    <input class="form-control bg-dark text-white" type="number" step="0.01" min="-1000"
+                           id="outcome"
+                           name="outcome"
+                           value="{{ trade_to_update.outcome }}" required>
+                </div>
+                <div class="col-sm-12 col-md-8 mb-3">
+                    <label for="close" class="form-label">Exit Strategy</label>
+                    <textarea class="form-control bg-dark text-white" id="close" name="close" rows="2"
+                              required>{{ trade_to_update.close }}</textarea>
+                </div>
+                <div class="col-sm-12 col-md-8 mb-3">
+                    <label for="deduction" class="form-label">Comments</label>
+                    <textarea class="form-control bg-dark text-white" id="deduction" name="deduction" rows="3"
+                              required>{{ trade_to_update.deduction }}</textarea>
+                </div>
+                <h3>Screenshots</h3>
+                <div class="col-sm-12 col-md-8 p-1">
+                    <label for="open_image">Open Image</label>
+                    <p class="text-muted">Maximum 4 links </p>
+                    <textarea class="form-control bg-dark text-white mt-1" type="text" id="open_image" name="open_image"
+                              required>{{ trade_to_update.open_image }}</textarea>
+                </div>
+                <div class="col-sm-12 col-md-8 p-1">
+                    <label for="close_image">Close Trade Image</label>
+                    <p class="text-muted">Maximum 4 links </p>
+                    <textarea class="form-control bg-dark text-white mt-1" type="text" id="close_image" name="close_image"
+                               required>{{ trade_to_update.close_image }}</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-outline-light mt-4 mb-3">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% include 'footer.html' %}

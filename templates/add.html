@@ -1,0 +1,83 @@
+{% include 'header.html' %}
+<div class="container pb-5 text-white mb-5">
+    <form action="{{ url_for('add_trade') }}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 pt-3">
+                <h3>Before Trade</h3>
+                <div class="col-sm-6 col-md-5 mb-2 p-1">
+                    <label for="symbol" class="form-label">Symbol</label>
+                    <select class="form-select bg-dark text-white" id="symbol" name="symbol" required>
+                        <option value="Crash 1000">Crash 1000</option>
+                        <option value="Crash 500">Crash 500</option>
+                        <option value="Crash 300">Crash 300</option>
+                        <option value="Boom 1000">Boom 1000</option>
+                        <option value="Boom 500">Boom 500</option>
+                        <option value="Boom 300">Boom 300</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 col-md-5 mb-2 p-1">
+                    <label for="buy_sell" class="form-label">Buy/Sell</label>
+                    <select class="form-select bg-dark text-white" id="buy_sell" name="buy_sell" required>
+                        <option value="Buy">Buy</option>
+                        <option value="Sell">Sell</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 col-md-5 mb-2 p-1">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control bg-dark text-white" id="date" name="date" required>
+                </div>
+                <div class="col-sm-6 col-md-5 mb-2 p-1">
+                    <label for="trend" class="form-label">Trend</label>
+                    <select class="form-select bg-dark text-white" id="trend" name="trend" required>
+                        <option value="Uptrend">Uptrend</option>
+                        <option value="Downtrend">Downtrend</option>
+                        <option value="Ranging">Ranging</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 col-md-5 mb-2 p-1">
+                    <label for="divergence" class="form-label">Divergence</label>
+                    <select class="form-select bg-dark text-white" id="divergence" name="divergence" required>
+                        <option value="Hidden Divergence">Hidden Divergence</option>
+                        <option value="Regular Divergence">Regular Divergence</option>
+                        <option value="No Divergence">No Divergence</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-8 mb-2 p-1">
+                    <label for="confirmation">Entry Strategy</label>
+                    <textarea class="form-control bg-dark text-white mt-1" id="confirmation" name="confirmation" rows="2" required></textarea>
+                </div>
+                <h3>Upload Screenshots</h3>
+                <div class="col-sm-12 col-md-8 p-1">
+                    <label for="open_image">Open Image</label>
+                    <p class="text-muted">Maximum 4 links </p>
+                    <textarea class="form-control bg-dark text-white mt-1" id="open_image" name="open_image" rows="2" required></textarea>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 pt-3">
+                <h3>After Trade</h3>
+                <div class="col-sm-12 col-md-8 mb-2 p-1">
+                    <label for="outcome">Trade outcome</label>
+                    <p class="text-muted">PnL eg. -30 or 45</p>
+                    <input class="form-control bg-dark text-white" type="number" step="0.01" min="-1000" id="outcome" name="outcome">
+                </div>
+                <div class="col-sm-12 col-md-8 mb-2 p-1">
+                    <label for="close" class="form-label">Exit Strategy</label>
+                    <textarea class="form-control bg-dark text-white" id="close" name="close" rows="3"></textarea>
+                </div>
+                <div class="col-sm-12 col-md-8 mb-2 p-1">
+                    <label for="deduction" class="form-label">Comments</label>
+                    <textarea class="form-control bg-dark text-white" id="deduction" name="deduction" rows="3"></textarea>
+                </div>
+                <h3>Upload Screenshot</h3>
+                <div class="col-sm-12 col-md-8 p-1">
+                    <label for="close_image">Close Trade Image</label>
+                    <p class="text-muted">Maximum 4 links </p>
+                    <textarea class="form-control bg-dark text-white mt-1" id="close_image" rows="2" name="close_image"></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline-light mt-4">Add Trade</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% include 'footer.html' %}

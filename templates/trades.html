@@ -1,0 +1,36 @@
+{% include "header.html" %}
+
+<div class="container text-white col-md-p5 pb-5 mb-5">
+    {% for trade in trades_list %}
+        {% if trade.buy_sell == 'Buy' %}
+        <div class="callout callout-success col-sm-12 col-md-10 mx-auto">
+            <div class="d-flex flex-row justify-content-between">
+                <a href="{{ url_for('view_trade', trade_id=trade.id) }}" class="text-decoration-none"><h4>{{
+                    trade.date.strftime("%d %B, %Y") }}&nbsp-&nbsp{{ trade.symbol}}</h4></a>
+                <a type="button" class="ms-auto btn-close btn-close-white" href="{{ url_for('delete_trade', trade_id=trade.id) }}"></a>
+            </div>
+            <ul>
+                {% for line in trade.deduction.split('\n') %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        {% else %}
+        <div class="callout callout-danger col-sm-12 col-md-10 mx-auto">
+            <div class="d-flex flex-row justify-content-between">
+                <a href="{{ url_for('view_trade', trade_id=trade.id) }}" class="text-decoration-none"><h4>{{
+                    trade.date.strftime("%d %B, %Y") }}&nbsp-&nbsp{{ trade.symbol }}</h4></a>
+                <a type="button" class="btn-close ms-auto btn-close-white" href="{{ url_for('delete_trade', trade_id=trade.id) }}"></a>
+            </div>
+             <ul>
+                {% for line in trade.deduction.split('\n') %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% include "footer.html" %}
