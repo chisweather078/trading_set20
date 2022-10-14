@@ -133,7 +133,7 @@ def delete_trade(trade_id):
     to_delete = Trade.query.get(trade_id)
     db.session.delete(to_delete)
     db.session.commit()
-    return redirect(url_for("my_trades", month=to_delete.month_year))
+    return redirect(url_for("my_trades", set_num=to_delete.set_num))
 
 
 if __name__ == "__main__":
